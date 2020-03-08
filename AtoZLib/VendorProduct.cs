@@ -11,15 +11,36 @@ namespace AtoZLib
         [ForeignKey(typeof(Product))]
         public int ProductID { get; set; }
 
-        [OneToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Product Product { get; set; }
 
         [ForeignKey(typeof(Vendor))]
         public int VendorID { get; set; }
 
-        [OneToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Vendor Vendor { get; set; }
 
         public decimal Price { get; set; }
+
+        public VendorProductDetails Details()
+        {
+            return new VendorProductDetails() {
+                ProductID = ProductID,
+                Vendor = Vendor.Name,
+                Product = Product.Name,
+                Price = $@"${Price}",
+                Commission = $@"{Vendor.Commission}%",
+            };
+        }
+    }
+    
+    public class VendorProductDetails
+    {
+        public int ProductID { get; internal set; }
+        public string Product { get; internal set; }
+        public string Vendor { get; internal set; }
+        public string Price { get; internal set; }
+        public string Commission { get; internal set; }
+        public int Quantity { get; set; }
     }
 }

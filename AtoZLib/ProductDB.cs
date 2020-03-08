@@ -12,8 +12,8 @@ namespace AtoZLib
     {
         public static List<Product> GetAllVendorProducts()
         {
-            var query = DataBase.Connection.Table<Product>();
-            return query.ToList();
+            var query = DataBase.Connection.GetAllWithChildren<Product>(recursive: true);
+            return query;
         }
     }
 }

@@ -14,8 +14,8 @@ namespace AtoZLib
         public string Description { get; set; }
         public double MSRP { get; set; } // Minimum selling price
 
-        [OneToMany]
-        public List<VendorProduct> VendorProduct { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
+        public List<VendorProduct> VendorProducts { get; set; }
 
         public override string ToString()
         {

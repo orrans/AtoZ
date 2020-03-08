@@ -1,6 +1,7 @@
 ﻿using AtoZLib;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -38,7 +39,16 @@ namespace AtoZ
         {
             ListBox list = (ListBox)sender;
             Product current = (Product)list.SelectedItem;
-            #region ProductsGrid
+            SetProductInfo(current);
+            SetVendorProducts(current);
+
+            #region CartGrid
+            //var CartProduct = new List<>();
+            #endregion
+        }
+
+        public void SetProductInfo(Product current)
+        {
             var productFields = new List<Field>();
             productFields.AddRange(new List<Field> {
                 new Field() {
@@ -58,12 +68,17 @@ namespace AtoZ
             var source = new Binding();
             ProductInfoGrid.DataContext = collection;
             ProductInfoGrid.ItemsSource = collection;
-            ProductInfoGrid.SetBinding(DataGrid.ItemsSourceProperty, source);
-            #endregion
+            ProductInfoGrid.SetBinding(ItemsControl.ItemsSourceProperty, source);
+        }
 
-            #region CartGrid
-            //var CartProduct = new List<>();
-            #endregion
+        public void SetVendorProducts(Product current)
+        {
+            var vendorProducts = current.VendorProducts;
+            var collection = new ObservableCollection<VendorProductDetails>(vendorProducts.Select(p => p.Details()));
+            var source = new Binding();
+            VendorsGrid.DataContext = collection;
+            VendorsGrid.ItemsSource = collection;
+            VendorsGrid.SetBinding(ItemsControl.ItemsSourceProperty, source);
         }
     }
 
@@ -72,4 +87,6 @@ namespace AtoZ
         public string Name { get; set; }
         public string Value { get; set; }
     }
+
+
 }
