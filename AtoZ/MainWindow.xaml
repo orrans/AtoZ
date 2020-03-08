@@ -5,14 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AtoZ"
         mc:Ignorable="d"
-        Title="MainWindow" Height="599.191" Width="986.792">
+        Title="MainWindow" Height="740.367" Width="986.792">
     <Grid>
         <ListBox x:Name="ProductsListBox" HorizontalAlignment="Left" Height="442" Margin="10,41,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="ProductsListBox_SelectionChanged"/>
         <Label x:Name="ProductLBL" Content="Products" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="ProductInfoLBL" Content="Product Info" HorizontalAlignment="Left" Margin="237,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <DataGrid x:Name="ProductInfoGrid" HorizontalAlignment="Left" Height="200" Margin="237,41,0,0" VerticalAlignment="Top" Width="732" CanUserAddRows="False"></DataGrid>
-        <DataGrid x:Name="CartGrid" HorizontalAlignment="Left" Height="215" Margin="237,268,0,0" VerticalAlignment="Top" Width="732"/>
-        <Label x:Name="Cart" Content="Cart" HorizontalAlignment="Left" Margin="237,242,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DataGrid x:Name="VendorsGrid" HorizontalAlignment="Left" Height="215" Margin="237,268,0,0" VerticalAlignment="Top" Width="732" CanUserAddRows="False">
+            <!--<Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Quantity}">
+                        <Setter Property=""
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>-->
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="False" />
+                <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="False" />
+            </DataGrid.Columns>-->
+        </DataGrid>
+        <Label x:Name="VendorsLBL" Content="Vendors" HorizontalAlignment="Left" Margin="237,242,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
     </Grid>
 </Window>

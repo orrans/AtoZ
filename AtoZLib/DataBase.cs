@@ -77,7 +77,8 @@ namespace AtoZLib
             var vendorProduct = new VendorProduct()
             {
                 ProductID = product.ID,
-                Price = 10m
+                Price = 10m,
+                VendorID = vendor.ID
             };
             Connection.Insert(vendorProduct);
 
